@@ -1,4 +1,3 @@
-import time
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -37,7 +36,5 @@ try:
     message_elem.send_keys(message, Keys.ENTER)
 
 
-
-    input()
 except NoSuchElementException:
     print('No classes scheduled for today.')
