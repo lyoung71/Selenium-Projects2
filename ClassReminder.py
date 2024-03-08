@@ -1,10 +1,12 @@
+#!/usr/local/bin/python3
+
+import time
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
-
 
 
 options = Options()
@@ -15,7 +17,6 @@ driver.get("https://preply.com/en/calendar")
 
 today = datetime.now()
 todayString = today.strftime('%Y-%m-%d')
-print(todayString)
 schedule = []
 message = "Today\'s schedule: \n"
 
@@ -27,13 +28,15 @@ try:
         schedule.append(f"{class_elems[i].text} ({time_elems[i].text})")
     for item in schedule:
         message += f"{item}\n"
-    print(message)
 
     driver.get('https://web.whatsapp.com/')
     driver.implicitly_wait(30)
     me_elem = driver.find_element(By.XPATH, "//span[@title='Eu']").click()
+    driver.implicitly_wait(10)
     message_elem = driver.find_element(By.XPATH, "//div[@title='Type a message']")
+    driver.implicitly_wait(10)
     message_elem.send_keys(message, Keys.ENTER)
+    time.sleep(3)
 
 
 except NoSuchElementException:
