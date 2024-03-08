@@ -8,7 +8,10 @@ from selenium.webdriver.chrome.options import Options
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
 
-driver = webdriver.Chrome('/Users/landonyoung/Downloads/chromedriver-mac-arm64/chromedriver', options=options)
+driver = webdriver.Chrome(
+    '/Users/landonyoung/Downloads/chromedriver-mac-arm64/chromedriver',
+    options=options
+    )
 driver.get('https://web.whatsapp.com/')
 driver.implicitly_wait(15)
 time.sleep(10)

@@ -6,11 +6,13 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
 
-
 options = Options()
 options.add_argument("user-data-dir=/tmp/tarun")
 
-driver = webdriver.Chrome('/Users/landonyoung/Downloads/chromedriver-mac-arm64/chromedriver', options=options)
+driver = webdriver.Chrome(
+    '/Users/landonyoung/Downloads/chromedriver-mac-arm64/chromedriver',
+    options=options
+    )
 driver.get('https://twitter.com')
 driver.implicitly_wait(10)
 
@@ -34,14 +36,25 @@ try:
 
     while count < 10:
         emoji = emoji_list[count]
-        tweet_elem = driver.find_element(By.CLASS_NAME, "DraftEditor-editorContainer").click()
-        add_emoji = driver.find_element(By.XPATH, "//div[@aria-label='Add emoji']").click()
-        add_emoji = driver.find_element(By.XPATH, f"//div[@aria-label='{emoji}']").click()
+        tweet_elem = driver.find_element(
+            By.CLASS_NAME,
+            "DraftEditor-editorContainer"
+            ).click()
+        add_emoji = driver.find_element(
+            By.XPATH,
+            "//div[@aria-label='Add emoji']"
+            ).click()
+        add_emoji = driver.find_element(
+            By.XPATH,
+            f"//div[@aria-label='{emoji}']"
+            ).click()
         root = driver.find_element(By.ID, "react-root").click()
-        post_elem = driver.find_element(By.XPATH, "//div[@data-testid='tweetButtonInline']").click()
+        post_elem = driver.find_element(
+            By.XPATH,
+            "//div[@data-testid='tweetButtonInline']"
+            ).click()
         count += 1
         time.sleep(60)
-
 
     time.sleep(3)
 
@@ -50,14 +63,23 @@ except NoSuchElementException:
     password = input("What is your password?")
     email = input("What is your email?")
     driver.get('https://twitter.com/i/flow/login')
-    email_elem = driver.find_element(By.XPATH, "//input[@autocomplete='username']")
+    email_elem = driver.find_element(
+        By.XPATH,
+        "//input[@autocomplete='username']"
+        )
     email_elem.send_keys(f"{email}", Keys.ENTER)
     time.sleep(3)
 
-    username_elem= driver.find_element(By.XPATH, "//input[@autocomplete='on']")
+    username_elem = driver.find_element(
+        By.XPATH,
+        "//input[@autocomplete='on']"
+        )
     username_elem.send_keys(username, Keys.ENTER)
     driver.implicitly_wait(5)
 
-    password_elem = driver.find_element(By.XPATH, "//input[@autocomplete='current-password']")
+    password_elem = driver.find_element(
+        By.XPATH,
+        "//input[@autocomplete='current-password']"
+        )
     password_elem.send_keys(password, Keys.ENTER)
     time.sleep(3)
